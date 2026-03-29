@@ -5,20 +5,18 @@ format:
   html:
     toc: true
     toc-depth: 2
+    toc-location: right
 editor: visual
 execute:
   echo: false
   warning: false
   message: false
 ---
-
-```{=html}
 <style>
 body {
   background-color: #f6f7fb;
 }
 </style>
-```
 
 # Background and Corpus
 
