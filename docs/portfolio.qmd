@@ -1,8 +1,14 @@
 ---
 title: "Computational Musicology Portfolio"
 author: "Gijs de Huu"
-format: dashboard
-editor: visual
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    theme: cosmo
+    page-layout: full
+editor: source
 ---
 
 # Background and Corpus
@@ -558,9 +564,7 @@ Clustering therefore addresses a slightly different question from classification
 
 In this portfolio, the clustering can be related to the earlier analyses. Features such as instrumentalness, valence, loudness, tempo, and danceability are likely to contribute to the grouping of tracks. This fits the broader distinction developed throughout the portfolio: Italo Disco tends to foreground harmonic cycles and more song-based structures, whereas Berlin Minimal Techno places more emphasis on instrumental texture, repetition, and gradual transformation.
 
-# Reflection / Contribution
-
-## Reflection
+# Reflection
 
 This portfolio showed that Italo Disco and Berlin Minimal Techno differ not only in broad Spotify features, but also in how they organise pitch, timbre, rhythm, and repetition over time. Beginning with track-level Spotify features and moving towards more detailed representations such as chromagrams, self-similarity matrices, and tempograms, the aim was to understand how these genres differ in harmony, timbre, rhythm, and overall structure.
 
