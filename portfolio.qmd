@@ -1,15 +1,27 @@
 ---
 title: "Computational Musicology Portfolio"
 author: "Gijs de Huu"
-format:
+format: dashboard
   html:
     toc: true
     toc-depth: 2
     number-sections: false
     theme: cosmo
     page-layout: full
-editor: source
+editor: visual
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+<style>
+body {
+  background-color: #f6f7fb;
+}
+.quarto-dashboard-content {
+  background-color: #f6f7fb;
+}
+</style>
 
 # Background and Corpus
 
