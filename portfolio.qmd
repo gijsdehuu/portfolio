@@ -1,13 +1,10 @@
 ---
 title: "Computational Musicology Portfolio"
 author: "Gijs de Huu"
-format: dashboard
+format:
   html:
     toc: true
     toc-depth: 2
-    number-sections: false
-    theme: cosmo
-    page-layout: full
 editor: visual
 execute:
   echo: false
@@ -16,9 +13,6 @@ execute:
 ---
 <style>
 body {
-  background-color: #f6f7fb;
-}
-.quarto-dashboard-content {
   background-color: #f6f7fb;
 }
 </style>
@@ -39,7 +33,7 @@ The central question of this portfolio is whether the difference between Italo D
 
 ## Tempo and Danceability
 
-This first comparison focuses on tempo (BPM) and danceability. Rather than assuming that tempo directly determines danceability, this analysis asks whether the two genres differ in how tempo and danceability are related.
+This first comparison focuses on tempo (BPM) and danceability. Rather than assuming that tempo directly determines danceability, this analysis asks how these two features are distributed across the two genres.
 
 ```{r}
 library(tidyverse)
@@ -61,26 +55,28 @@ genre_correlations <- corpus %>%
     correlation = cor(Tempo, Danceability, use = "complete.obs")
   )
 
-ggplot(corpus, aes(x = Tempo, y = Danceability, color = genre)) +
-  geom_point(alpha = 0.75, size = 2.5) +
-  geom_smooth(method = "lm", se = TRUE, linewidth = 0.8) +
+ggplot(corpus, aes(x = Tempo, y = Danceability)) +
+  geom_point(size = 3, alpha = 0.8) +
   facet_wrap(~ genre) +
   labs(
-    title = "Tempo and Danceability in Italo Disco and Berlin Minimal Techno",
-    subtitle = "Track-level comparison with linear trends and uncertainty bands",
+    title = "Tempo and Danceability by Genre",
+    subtitle = "Track-level comparison",
     x = "Tempo (BPM)",
     y = "Danceability (0–1)"
   ) +
   theme_minimal(base_size = 14) +
   theme(
-    strip.text = element_text(face = "bold"),
-    legend.position = "none"
+    panel.grid = element_blank(),
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA),
+    strip.background = element_rect(fill = "white", colour = NA),
+    strip.text = element_text(face = "bold")
   )
 ```
 
-The plot shows that both genres have tempo ranges typical of dance music, but the relationship between tempo and danceability differs in strength and direction. The regression lines provide a useful summary of the overall pattern, while the confidence bands show that the relationship remains somewhat uncertain.
+The plot shows that both playlists fall within tempo ranges typical of dance music and include many tracks with relatively high danceability values. The clearest difference is that Berlin Minimal Techno is concentrated within a narrower tempo range, whereas Italo Disco shows more variation in tempo. This suggests that the figure is more informative about differences in tempo spread than about any strong relationship between tempo and danceability itself.
 
-Danceability is influenced by a combination of factors, including tempo, rhythmic regularity, beat strength, and overall regularity. In addition, other musical features such as energy and texture may also shape how danceable a track feels. Therefore, the following sections will move beyond track-level features to examine pitch organisation, timbre, loudness, and rhythm in more detail.
+Because danceability is shaped by more than tempo alone, the following sections move beyond track-level features to examine pitch organisation, timbre, loudness, and rhythm in more detail.
 
 # Chroma / Pitch
 
@@ -124,7 +120,12 @@ ggplot(two_long, aes(x = Time, y = Pitch, fill = Magnitude)) +
     x = "Time (s)",
     y = NULL
   ) +
-  theme_minimal(base_size = 12)
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid = element_blank(),
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
 ```
 :::
 
@@ -138,7 +139,12 @@ ggplot(levo_long, aes(x = Time, y = Pitch, fill = Magnitude)) +
     x = "Time (s)",
     y = NULL
   ) +
-  theme_minimal(base_size = 12)
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid = element_blank(),
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA)
+  )
 ```
 :::
 :::
@@ -199,6 +205,9 @@ ggplot(chroma_both, aes(
   theme_minimal(base_size = 14) +
   theme(
     panel.grid = element_blank(),
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA),
+    strip.background = element_rect(fill = "white", colour = NA),
     strip.text = element_text(face = "bold")
   )
 ```
@@ -263,9 +272,12 @@ ggplot(timbre_both, aes(
     x = "Time",
     y = "Time"
   ) +
-  theme_minimal(base_size = 14) +
+ theme_minimal(base_size = 14) +
   theme(
     panel.grid = element_blank(),
+    panel.background = element_rect(fill = "white", colour = NA),
+    plot.background = element_rect(fill = "white", colour = NA),
+    strip.background = element_rect(fill = "white", colour = NA),
     strip.text = element_text(face = "bold")
   )
 ```
@@ -304,9 +316,7 @@ ggplot(corpus, aes(x = genre, y = Loudness, fill = genre)) +
   theme(legend.position = "none")
 ```
 
-This boxplot compares loudness across the two genres. Both show a broadly similar range, as is expected for electronically produced dance music. However, differences in variability could reveal how changeable the tracks are in their overall energy.
-
-By capturing this perceived intensity, it supports patterns already observed in timbre and rhythm: gradual changes in loudness and perceived energy may align with the timbral build-ups observed in Minimal Techno, while more stable loudness levels may correspond to the consistent groove typical of Italo Disco.
+This boxplot compares loudness across the two genres. Both show a broadly similar range, which is expected for electronically produced dance music. Any difference here appears to be one of distribution rather than a sharp contrast between genres. Loudness therefore complements the broader comparison, but on its own it does not distinguish the playlists as clearly as the pitch-, timbre-, or rhythm-based analyses.
 
 # Rhythm / Tempo
 
@@ -324,7 +334,7 @@ plot_tempogram <- function(file, label) {
     pivot_longer(-TIME, names_to = "tempo", values_to = "value") |>
     mutate(tempo = as.numeric(tempo)) |>
     ggplot(aes(x = TIME, y = tempo, fill = value)) +
-    geom_raster() +
+    geom_tile() +
     scale_fill_viridis_c() +
     labs(
       title = paste("Tempogram:", label),
@@ -332,20 +342,21 @@ plot_tempogram <- function(file, label) {
       y = "Tempo (BPM)"
     ) +
     coord_cartesian(ylim = c(40, 300)) +
-    theme_minimal(base_size = 14)
+    theme_minimal(base_size = 14) +
+    theme(
+      panel.grid = element_blank(),
+      panel.background = element_rect(fill = "white", colour = NA),
+      plot.background = element_rect(fill = "white", colour = NA)
+    )
 }
 
 plot_tempogram("twohearts-tempogram.csv", "Two of Hearts")
 plot_tempogram("levo-tempogram.csv", "Levo")
 ```
 
-The tempograms show how rhythmic periodicities are distributed over time. In both cases, there is a clear group of energy around the 120–130 BPM range, which corresponds to the typical tempo of dance music. This can be seen in the visualisation as a horizontal band of higher intensity.
+The tempograms show how rhythmic periodicities are distributed over time. In both tracks, a strong grouping of energy appears around the 120–130 BPM range, visible as a horizontal band of greater intensity. This confirms that both tracks operate within a dance-oriented tempo range.
 
-However, the two tracks differ in how stable and obvious this periodicity is. In *Levo*, the band around the main tempo is more continuous and stable over time, suggesting a highly regular and constant rhythmic structure, which aligns with minimal techno. In *Two of Hearts*, the same tempo range is present but appears less constant, which suggests more rhythmic variation.
-
-The tempogram shows not just tempo itself, but the strength of rhythmic repetition at different periodicities. The strongest bands represent the perceived beat, while weaker bands could reflect rhythmic structures such as half-time or double-time patterns.
-
-These observations support the broader contrast developed throughout the portfolio. Although both tracks share a similar tempo range, *Levo* depends more on rhythmic stability and persistence, whereas *Two of Hearts* introduces more variation within that rhythmic framework.
+The difference lies in stability. In *Levo*, the band around the main tempo is more continuous and regular over time, suggesting a more persistent rhythmic structure. In *Two of Hearts*, the same tempo range is present but less uniform, which suggests greater rhythmic variation. This supports the broader contrast developed throughout the portfolio: although both tracks are danceable and tempo-relatedly similar, *Levo* depends more on rhythmic persistence, whereas *Two of Hearts* allows more local variation within that framework.
 
 # Clustering or Classification
 
@@ -463,13 +474,13 @@ ggplot(importance_df, aes(x = reorder(feature, importance), y = importance)) +
   theme_minimal(base_size = 14)
 ```
 
-The full-feature classifier tests whether the two genres can be separated using Spotify audio features alone. The confusion matrix shows how many test tracks were correctly or incorrectly assigned to each genre, while the accuracy score summarises the overall performance.
+The full-feature classifier tests whether the two playlists can be separated using Spotify audio features alone. The confusion matrix shows how many test tracks were correctly or incorrectly assigned to each genre, while the accuracy score summarises overall performance.
 
-The reduced-feature model asks whether similar results can be achieved with a smaller set of variables. The reduced model performs just as well as the full model, which suggests that a smaller set of variables already captures much of the difference between the two playlists.
+The reduced-feature model asks whether similar results can be achieved with a smaller set of variables. In this sample, the reduced model performs just as well as the full model, which suggests that a smaller group of features already captures much of the difference between the two playlists.
 
-The feature-importance plot helps to explain what is driving the classification. Variables such as instrumentalness, valence, loudness, danceability, and tempo appear to contribute most strongly. The separation between the playlists is not only visible in structural features, but also in broader stylistic differences, with Berlin Minimal Techno tending to be more instrumental and texturally gradual, and Italo Disco showing clearer harmonic cycles with a more song-like form.
+The feature-importance plot indicates which variables contributed most strongly to the full model. Instrumentalness, valence, loudness, danceability, and tempo appear especially important. This suggests that some of the contrast between the playlists is reflected not only in detailed structural analyses, but also in broader Spotify feature profiles.
 
-With 22 tracks per playlist, the dataset is large enough to explore classification, but still small enough to be interpreted cautiously. Even so, the fact that the genres can be separated at all suggests that the differences described earlier in pitch organisation, timbre, and rhythmic structure are also reflected in track-level audio features.
+Because the dataset contains only 22 tracks per playlist, these results should be interpreted cautiously. The classifier’s performance is informative for this sample, but it should not be treated as definitive evidence that the genres are always cleanly separable.
 
 ## Hierarchical Clustering
 
@@ -560,21 +571,21 @@ par(mfrow = c(1, 1))
 ```{r clustering-final, warning=FALSE, message=FALSE, fig.height=7}
 hc_complete <- hclust(track_dist, method = "complete")
 
-ggdendrogram(hc_complete, rotate = FALSE, size = 2) +
+ggdendrogram(hc_complete, rotate = TRUE, size = 2) +
   labs(
     title = "Hierarchical Clustering of Italo Disco and Berlin Minimal Techno",
     subtitle = "Complete linkage on scaled Spotify audio features",
     x = "",
     y = "Height"
   ) +
-  theme_minimal(base_size = 12)
+  theme_minimal(base_size = 10)
 ```
 
-The dendrogram shows how tracks group together based on their overall similarity across Spotify audio features. If the two genres form separate branches, this suggests that their differences are strong enough to appear even without genre labels. If tracks from both playlists are mixed together, this suggests greater overlap in their track-level profiles.
+The dendrogram shows how tracks group together based on their overall similarity across Spotify audio features. Rather than using genre labels directly, clustering asks whether the tracks form groups on their own.
 
-Clustering therefore addresses a slightly different question from classification. Whereas the classifier tests whether a model can learn to distinguish the genres, the dendrogram shows whether the tracks naturally organise into distinct groups.
+In this case, the dendrogram suggests partial separation rather than a clean split. Some tracks cluster with others from the same playlist, but Italo Disco and Berlin Minimal Techno do not form two fully distinct branches. This indicates that the Spotify feature profiles capture some difference between the playlists, while also showing overlap between individual tracks.
 
-In this portfolio, the clustering can be related to the earlier analyses. Features such as instrumentalness, valence, loudness, tempo, and danceability are likely to contribute to the grouping of tracks. This fits the broader distinction developed throughout the portfolio: Italo Disco tends to foreground harmonic cycles and more song-based structures, whereas Berlin Minimal Techno places more emphasis on instrumental texture, repetition, and gradual transformation.
+This makes clustering a useful complement to classification. Whereas the classifier tests whether a model can learn to distinguish the two playlists, the dendrogram shows that the underlying feature space is structured by genre only to a limited extent, not in an absolute way.
 
 # Reflection
 
@@ -586,7 +597,7 @@ This contrast becomes even clearer in timbre. The MFCC-based self-similarity mat
 
 The rhythmic analyses showed that both tracks fall within a similar tempo range typical of dance music, but differ in how rhythm functions structurally. The loudness analysis supported this broader contrast by showing differences in how musical intensity was distributed across the two playlists.
 
-Finally, the classification and clustering analyses showed that these differences are not only visible in detailed structural representations, but also in broader Spotify audio features. Although the dataset is relatively small, the fact that the genres can be distinguished computationally suggests that the differences described throughout the portfolio is based on consistent patterns rather than chance.
+Finally, the classification and clustering analyses showed that these differences are not only visible in detailed structural representations, but also in broader Spotify audio features. Although the dataset is relatively small, the fact that the genres can be distinguished computationally suggests that the differences described throughout the portfolio are based on consistent patterns rather than chance.
 
 A main contribution of this portfolio is that it brings together several computational approaches into one stylistic comparison. By combining track-level features with pitch, timbre, rhythm, and grouping methods, it shows how measurable musical patterns can be connected to differences in listening experience between genres.
 
