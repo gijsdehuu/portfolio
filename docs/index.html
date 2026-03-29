@@ -1,8 +1,785 @@
-<html xmlns="http://www.w3.org/1999/xhtml">    
-  <head>      
-    <title>Redirect to portfolio.html</title>      
-    <meta http-equiv="refresh" content="0;URL='portfolio.html'" />    
-  </head>    
-  <body> 
-  </body>  
-</html>     
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gijs de Huu">
+
+<title>Computational Musicology Portfolio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="portfolio_files/libs/clipboard/clipboard.min.js"></script>
+<script src="portfolio_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="portfolio_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="portfolio_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="portfolio_files/libs/quarto-html/popper.min.js"></script>
+<script src="portfolio_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="portfolio_files/libs/quarto-html/anchor.min.js"></script>
+<link href="portfolio_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="portfolio_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="portfolio_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="portfolio_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="portfolio_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#background-and-corpus" id="toc-background-and-corpus" class="nav-link active" data-scroll-target="#background-and-corpus">Background and Corpus</a></li>
+  <li><a href="#track-level-features" id="toc-track-level-features" class="nav-link" data-scroll-target="#track-level-features">Track-Level Features</a>
+  <ul class="collapse">
+  <li><a href="#tempo-and-danceability" id="toc-tempo-and-danceability" class="nav-link" data-scroll-target="#tempo-and-danceability">Tempo and Danceability</a></li>
+  </ul></li>
+  <li><a href="#chroma-pitch" id="toc-chroma-pitch" class="nav-link" data-scroll-target="#chroma-pitch">Chroma / Pitch</a></li>
+  <li><a href="#timbre" id="toc-timbre" class="nav-link" data-scroll-target="#timbre">Timbre</a>
+  <ul class="collapse">
+  <li><a href="#timbre-self-similarity-mfcc" id="toc-timbre-self-similarity-mfcc" class="nav-link" data-scroll-target="#timbre-self-similarity-mfcc">Timbre Self-Similarity (MFCC)</a></li>
+  </ul></li>
+  <li><a href="#loudness" id="toc-loudness" class="nav-link" data-scroll-target="#loudness">Loudness</a>
+  <ul class="collapse">
+  <li><a href="#loudness-and-energy" id="toc-loudness-and-energy" class="nav-link" data-scroll-target="#loudness-and-energy">Loudness and Energy</a></li>
+  </ul></li>
+  <li><a href="#rhythm-tempo" id="toc-rhythm-tempo" class="nav-link" data-scroll-target="#rhythm-tempo">Rhythm / Tempo</a>
+  <ul class="collapse">
+  <li><a href="#rhythmic-structure-tempograms" id="toc-rhythmic-structure-tempograms" class="nav-link" data-scroll-target="#rhythmic-structure-tempograms">Rhythmic Structure: Tempograms</a></li>
+  </ul></li>
+  <li><a href="#clustering-or-classification" id="toc-clustering-or-classification" class="nav-link" data-scroll-target="#clustering-or-classification">Clustering or Classification</a>
+  <ul class="collapse">
+  <li><a href="#classification-of-italo-disco-and-berlin-minimal-techno" id="toc-classification-of-italo-disco-and-berlin-minimal-techno" class="nav-link" data-scroll-target="#classification-of-italo-disco-and-berlin-minimal-techno">Classification of Italo Disco and Berlin Minimal Techno</a></li>
+  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering">Hierarchical Clustering</a></li>
+  </ul></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a>
+  <ul class="collapse">
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Computational Musicology Portfolio</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gijs de Huu </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+body {
+  background-color: #f6f7fb;
+}
+</style>
+<section id="background-and-corpus" class="level1">
+<h1>Background and Corpus</h1>
+<p>This portfolio presents a computational comparison between two electronic dance genres: Italo disco (1979–1986) and Berlin minimal techno (2000–2024). The goal is to investigate how these genres differ not only in track-level Spotify features, but also in deeper structural properties such as harmony, timbre, loudness, and rhythmic organisation.</p>
+<p>The corpus consists of two curated playlists of 22 tracks each. Although these playlists were not intended to include every important track in each genre, the portfolio assumes that the selected tracks are sufficiently representative of the broader styles. So any conclusions should be seen first as conclusions about this specific set of songs, and only more carefully as conclusions about the genres as a whole.</p>
+<p>Two representative tracks were selected for closer analysis: <em>Two of Hearts</em> by Stacey Q and <em>Levo</em> by Recondite. I selected these tracks because they featured the musical differences I wanted to examine computationally. Although <em>Two of Hearts</em> is an American rather than Italian track, it was included because it clearly shows key Italo Disco features, including looping minor-key harmonies, synthesizer-driven textures, and repetitive chord-based structure. Additionally, the genre itself was not limited to Italy alone, since it developed into an international phenomenon in the early 1980s. <em>Levo</em> was chosen as a representative example of Berlin Minimal Techno because of its emphasis on sustained tonal centres, gradual development, and timbral transformation.</p>
+<p>The portfolio combines Spotify audio features from Exportify, including danceability, loudness, valence, and tempo, with time-based features such as chroma, MFCCs, and tempograms extracted in Sonic Visualiser and analysed in R Studio using compmus.</p>
+<p>The central question of this portfolio is whether the difference between Italo Disco and Berlin Minimal Techno can be captured computationally, and if so, whether this lies in surface features or in more underlying patterns of pitch, timbre, and repetition over the course of the track.</p>
+</section>
+<section id="track-level-features" class="level1">
+<h1>Track-Level Features</h1>
+<section id="tempo-and-danceability" class="level2">
+<h2 class="anchored" data-anchor-id="tempo-and-danceability">Tempo and Danceability</h2>
+<p>This first comparison focuses on tempo (BPM) and danceability. Rather than assuming that tempo directly determines danceability, this analysis asks how these two features are distributed across the two genres.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot shows that both playlists fall within tempo ranges typical of dance music and include many tracks with relatively high danceability values. The clearest difference is that Berlin Minimal Techno is concentrated within a narrower tempo range, whereas Italo Disco shows more variation in tempo. This suggests that the figure is more informative about differences in tempo spread than about any strong relationship between tempo and danceability itself.</p>
+<p>Because danceability is shaped by more than tempo alone, the following sections move beyond track-level features to examine pitch organisation, timbre, loudness, and rhythm in more detail.</p>
+</section>
+</section>
+<section id="chroma-pitch" class="level1 page-columns page-full">
+<h1>Chroma / Pitch</h1>
+<div class="column-page">
+<p>To compare harmonic structure at the level of local pitch content, chromagrams were generated for one representative track from each playlist: <em>Two of Hearts</em> (Italo Disco) and <em>Levo</em> (Berlin Minimal Techno). Chroma features show the intensity of each pitch class (C, C#, D, etc.) over time, independent of octave. They were extracted in Sonic Visualiser and exported as CSV files.</p>
+<section id="chromagrams-of-the-two-tracks" class="level2">
+<h2 class="anchored" data-anchor-id="chromagrams-of-the-two-tracks">Chromagrams of the Two Tracks</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The chromagrams already show a clear difference in harmonic organisation. <em>Two of Hearts</em> shows multiple pitch classes being active at the same time, forming recurring vertical groupings that suggest chord-based harmony and repeated harmonic cycles. This fits the style of Italo Disco, where stable chord progressions and tonal repetition often play a central role.</p>
+<p>On the other hand, <em>Levo</em> shows fewer simultaneously active pitch classes, each of them often sustained over a longer time span. This creates a more horizontally continuous pattern, consistent with harmonic stasis, the prolonged use of a limited set of pitches with gradual variation over time.</p>
+</section>
+<section id="chroma-self-similarity" class="level2">
+<h2 class="anchored" data-anchor-id="chroma-self-similarity">Chroma Self-Similarity</h2>
+<p>While the chromagrams show which pitch classes are active at each moment, a chroma self-similarity matrix (SSM) shows how similar different moments in the same track are to one another.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/chroma-ssm-combined-1.png" class="img-fluid figure-img" width="1248"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The chroma SSMs make the structural difference easier to see. In <em>Two of Hearts</em>, repeated off-diagonal patterns show that similar chord patterns return in different parts of the song. This suggests that harmonic repetition is an important part of the track’s structure. In <em>Levo</em>, the pattern remains strong and the track is harmonically discreet. Taken together, the chromagrams and chroma SSMs suggest that <em>Two of Hearts</em> is more strongly organised by repeating harmonic cycles, while <em>Levo</em> relies more on sustained tonal centres and gradual change.</p>
+</section>
+<section id="note-on-key-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="note-on-key-estimation">Note on Key Estimation</h2>
+<p>A further key-estimation analysis was also explored using pitch-template matching, and although this provided some support for the difference between tonal stability in <em>Two of Hearts</em> and greater ambiguity in <em>Levo</em>, the resulting visualisation was less clear than the chromagram and chroma self-similarity matrix. For that reason, the pitch-based comparison in this portfolio focuses on those clearer depictions.</p>
+</section>
+</div>
+</section>
+<section id="timbre" class="level1">
+<h1>Timbre</h1>
+<section id="timbre-self-similarity-mfcc" class="level2">
+<h2 class="anchored" data-anchor-id="timbre-self-similarity-mfcc">Timbre Self-Similarity (MFCC)</h2>
+<p>As an addition to the pitch-based comparison, I also computed self-similarity matrices based on MFCC features. Whereas chroma focuses on pitch-class content, MFCCs capture timbral properties such as spectral shape and sound colour. This makes them useful for showing whether sections are connected through similar texture and production qualities, even when harmonic content remains relatively stable.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/timbre-ssm-combined-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In <em>Levo</em>, the block-like regions and clearer boundaries suggest more noticeable timbral change across sections, which is consistent with Berlin Minimal Techno.</p>
+<p>In <em>Two of Hearts</em>, the timbral SSM appears more consistent across time, suggesting a more stable overall sound between sections.</p>
+<p>Together, the pitch- and timbre-based SSMs show that the two tracks organise repetition differently. <em>Two of Hearts</em> relies more on harmonic repetition, while <em>Levo</em> relies more on timbral change.</p>
+</section>
+</section>
+<section id="loudness" class="level1">
+<h1>Loudness</h1>
+<section id="loudness-and-energy" class="level2">
+<h2 class="anchored" data-anchor-id="loudness-and-energy">Loudness and Energy</h2>
+<p>Loudness (measured in decibels) offers another way to understand how musical intensity is spread across tracks. Loudness reflects the overall energy level of a track.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This boxplot compares loudness across the two genres. Both show a broadly similar range, which is expected for electronically produced dance music. Any difference here appears to be one of distribution rather than a sharp contrast between genres. Loudness therefore complements the broader comparison, but on its own it does not distinguish the playlists as clearly as the pitch-, timbre-, or rhythm-based analyses.</p>
+</section>
+</section>
+<section id="rhythm-tempo" class="level1">
+<h1>Rhythm / Tempo</h1>
+<section id="rhythmic-structure-tempograms" class="level2">
+<h2 class="anchored" data-anchor-id="rhythmic-structure-tempograms">Rhythmic Structure: Tempograms</h2>
+<p>To analyse rhythmic structure, tempograms were computed for both tracks. A tempogram shows how strongly different tempo periodicities (in BPM) are present over time. Brighter regions indicate stronger rhythmic regularity at a given tempo.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The tempograms show how rhythmic periodicities are distributed over time. In both tracks, a strong grouping of energy appears around the 120–130 BPM range, visible as a horizontal band of greater intensity. This confirms that both tracks operate within a dance-oriented tempo range.</p>
+<p>The difference lies in stability. In <em>Levo</em>, the band around the main tempo is more continuous and regular over time, suggesting a more continuous rhythmic structure. In <em>Two of Hearts</em>, the same tempo range is present but less consistent, which suggests greater rhythmic variation. This supports the broader contrast developed throughout the portfolio: although both tracks are danceable and tempo-relatedly similar, <em>Levo</em> depends more on rhythmic persistence, whereas <em>Two of Hearts</em> allows more local variation within that framework.</p>
+</section>
+</section>
+<section id="clustering-or-classification" class="level1">
+<h1>Clustering or Classification</h1>
+<section id="classification-of-italo-disco-and-berlin-minimal-techno" class="level2">
+<h2 class="anchored" data-anchor-id="classification-of-italo-disco-and-berlin-minimal-techno">Classification of Italo Disco and Berlin Minimal Techno</h2>
+<p>As a final step, I trained a classifier to test whether Italo Disco and Berlin Minimal Techno can be distinguished computationally. This extends the earlier visual analyses by asking whether the differences in pitch, timbre, and rhythm also appear in higher-level track features.</p>
+<p>To do this, a random forest classifier was trained on the two playlists. I first used a broader set of Spotify features, and then a smaller feature set to see whether similar performance could be achieved with fewer variables.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  genre      n
+  &lt;fct&gt;  &lt;int&gt;
+1 Italo     22
+2 Techno    22</code></pre>
+</div>
+</div>
+<section id="full-feature-classifier" class="level3">
+<h3 class="anchored" data-anchor-id="full-feature-classifier">Full-feature classifier</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction Italo Techno
+    Italo      6      0
+    Techno     0      6</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary             1</code></pre>
+</div>
+</div>
+</section>
+<section id="reduced-feature-classifier" class="level3">
+<h3 class="anchored" data-anchor-id="reduced-feature-classifier">Reduced-feature classifier</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          Truth
+Prediction Italo Techno
+    Italo      6      0
+    Techno     0      6</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary             1</code></pre>
+</div>
+</div>
+</section>
+<section id="feature-importance" class="level3">
+<h3 class="anchored" data-anchor-id="feature-importance">Feature importance</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/feature-importance-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The full-feature classifier tests whether the two playlists can be separated using Spotify audio features alone. The confusion matrix shows how many test tracks were correctly or incorrectly assigned to each genre, while the accuracy score summarises overall performance.</p>
+<p>The reduced-feature model asks whether similar results can be achieved with a smaller set of variables. In this sample, the reduced model performs just as well as the full model, which suggests that a smaller group of features already captures much of the difference between the two playlists.</p>
+<p>The feature-importance plot helps show which musical characteristics matter most for this distinction. Instrumentalness is by far the strongest predictor, followed by valence and tempo. Musically, this suggests that the contrast between the playlists is related above all to how vocal or instrumental the tracks are, how emotionally bright or dark they sound, and how their tempo is distributed. In broad terms, the model seems to distinguish the playlists less through subtle structural detail than through differences in overall musical profile.</p>
+<p>Because the dataset contains only 22 tracks per playlist, these results should be interpreted tentatively. The classifier’s performance is informative for this sample, but it should not be treated as definitive evidence that the genres are always cleanly separable.</p>
+</section>
+</section>
+<section id="hierarchical-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-clustering">Hierarchical Clustering</h2>
+<p>In addition to classification, I used hierarchical clustering to examine whether tracks from the two playlists also group together without genre labels. This addresses the same question in a different way: instead of giving the model genre labels, it checks whether Italo Disco and Berlin Minimal Techno naturally form distinct clusters based on Spotify audio features alone.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  genre      n
+  &lt;chr&gt;  &lt;int&gt;
+1 Italo     22
+2 Techno    22</code></pre>
+</div>
+</div>
+<section id="pre-processing" class="level3">
+<h3 class="anchored" data-anchor-id="pre-processing">Pre-processing</h3>
+</section>
+<section id="distance-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="distance-matrix">Distance matrix</h3>
+</section>
+<section id="dendrograms-with-different-linkage-methods" class="level3">
+<h3 class="anchored" data-anchor-id="dendrograms-with-different-linkage-methods">Dendrograms with different linkage methods</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/clustering-dendrograms-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="final-dendrogram" class="level3">
+<h3 class="anchored" data-anchor-id="final-dendrogram">Final dendrogram</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_files/figure-html/clustering-final-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The dendrogram shows how tracks group together based on their overall similarity across Spotify audio features. Rather than using genre labels directly, clustering asks whether the tracks form groups on their own.</p>
+<p>In this case, the dendrogram suggests partial separation rather than a clean split. Some tracks cluster with others from the same playlist, but Italo Disco and Berlin Minimal Techno do not form two fully distinct branches. This indicates that the Spotify feature profiles capture some difference between the playlists, while also showing overlap between individual tracks.</p>
+<p>This makes clustering a useful complement to classification. Whereas the classifier tests whether a model can learn to distinguish the two playlists, the dendrogram shows that the underlying feature space is structured by genre only to a limited extent, not in an absolute way.</p>
+</section>
+</section>
+</section>
+<section id="reflection" class="level1">
+<h1>Reflection</h1>
+<p>This portfolio showed that Italo Disco and Berlin Minimal Techno differ not only in broad Spotify features, but also in how they organise pitch, timbre, rhythm, and repetition over time. Beginning with track-level Spotify features and moving towards chromagrams, self-similarity matrices, and tempograms. The aim was to understand how these genres differ in harmony, timbre, rhythm, and overall structure.</p>
+<p>Across the analyses, a consistent contrast emerged. <em>Two of Hearts</em> is organised more strongly through harmonic repetition, with clear chord cycles and recurring tonal patterns. This was visible in the chromagram and supported by the chroma self-similarity matrix. By contrast, <em>Levo</em> relies less on harmonic progression and more on gradual development within a limited tonal space.</p>
+<p>The distinction becomes even clearer in timbre. The MFCC-based self-similarity matrices showed that <em>Levo</em> is structured through changes in texture and sound colour, with more clearly differentiated timbral sections. <em>Two of Hearts</em>, on the other hand, maintains a more consistent timbral identity, which suggests that its form depends less on timbral contrast and more on harmonic repetition.</p>
+<p>The rhythmic analyses showed that both tracks fall within a similar tempo range typical of dance music, but differ in how rhythm functions structurally. The loudness analysis supported this broader difference by showing variety in how musical intensity was organized across the two playlists.</p>
+<p>Finally, the classification and clustering analyses showed that these differences are not only visible in detailed structural representations, but also in broader Spotify audio features. Although the dataset is relatively small, the fact that the genres can be distinguished computationally suggests that the differences described throughout the portfolio are based on consistent patterns rather than chance.</p>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>I would like to thank my fellow students for their feedback throughout the course, which helped improve this portfolio. I would also like to thank Atser Damsma for his guidance and feedback during the course.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
