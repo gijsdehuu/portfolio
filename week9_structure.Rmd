@@ -105,6 +105,11 @@ p_chroma <- ggplot(chroma_both, aes(
   labs(title = "Chroma Self-Similarity", x = "", y = "")
 
 p_chroma
+
+dir.create("images", showWarnings = FALSE)
+
+ggsave("images/timbre-ssm.png", p, width = 12, height = 5, dpi = 200)
+ggsave("images/chroma-ssm.png", p_chroma, width = 12, height = 5, dpi = 200)
 ```
 
 

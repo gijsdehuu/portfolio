@@ -4,9 +4,11 @@ author: "Gijs de Huu"
 format: html
 editor: visual
 ---
+
 ### Classification of Italo Disco and Minimal Berlin Techno
 
 A random forest classifier was trained to distinguish Italo disco from minimal Berlin techno using Spotify audio features from two playlists. The model was tested on a small set of songs that were not used during training. This makes it possible to test whether the two genres can be separated computationally on the basis of their audio profiles.
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(tidymodels)
@@ -71,10 +73,13 @@ acc_full <- accuracy(rf_preds, truth = genre, estimate = .pred_class)
 conf_mat_full
 acc_full
 ```
+
 ### Results:
+
 The confusion matrix shows that all four test tracks were assigned to their genre: 2 Italo disco tracks were correctly predicted as Italo disco, and 2 minimal Berlin techno tracks were correctly predicted as techno. No tracks were misclassified. However, it does not necessarily mean that all tracks from these genres can always be classified perfectly, because the dataset is too small.
 
 I trained a second classifier using fewer variables: danceability, energy, loudness, instrumentalness, valence, and tempo.
+
 ```{r}
 
 
@@ -102,5 +107,7 @@ conf_mat_small
 acc_small
 
 ```
+
 ### Conclusion:
+
 Spotify audio features can be used to distinguish between Italo disco and minimal Berlin techno.

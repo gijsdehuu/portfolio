@@ -1,2 +1,5 @@
 project:
   output-dir: docs
+  
+  type: website
+  title: "Computational Musicology HW10"
